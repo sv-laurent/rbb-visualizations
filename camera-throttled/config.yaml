@@ -1,0 +1,26 @@
+# Title of this configuration file
+title: "SV Camera Throttled"
+# Tag that identifies this configuration file.
+tag: "sv-camera"
+# Description of this configuration file
+description: ""
+# Author of this configuration file
+author: ""
+
+# Extraction rules
+rules:
+  raw-camera-output:
+    plugin: "rbb_tools.plugins.video_extractor"
+    config:
+      frame_rate: 25
+      frame_height: 540
+      frame_width: 960
+      text_x: 90
+      text_y: 5
+    topic_matchers:
+      - type: "rbb_tools.extraction.matchers.ExactMatchingRule"
+        config:
+          topics:
+            /camera/960x540_BGR3/image_raw/it/compressed: "sensor_msgs/CompressedImage"
+          remapping:
+            /camera/960x540_BGR3/image_raw/it/compressed: "/image"
